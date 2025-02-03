@@ -1,66 +1,64 @@
-## Foundry
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+# zkSync Era Smart Contract Deployment with Foundry  
 
-Foundry consists of:
+This project demonstrates the deployment of a Solidity smart contract on zkSync Era using Foundry. The contract simulates genomic data encryption and rollup.  
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Prerequisites  
+Before proceeding, ensure you have the following installed:  
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)  
+- zksync dependencies
+- zkSync Era Testnet RPC URL  
+- A funded wallet with Sepolia ETH for gas fees  
 
-## Documentation
+## Installation  
+1. **Clone the repository:**  
+   ```sh
+   git clone https://github.com/zacksfF/Catherine-test.git
+   cd Catherine-test
+   ```  
+2. **Install Foundry:**  
+   ```sh
+   curl -L https://foundry.paradigm.xyz | bash
+   foundryup
+   ```  
+3. **Install dependencies:**  
+   ```sh
+   forge install  
+   ```  
 
-https://book.getfoundry.sh/
+## Configuration  
+1. **Set up environment variables:**  
+   ```sh
+   export ZKSYNC_RPC="https://testnet.era.zksync.dev"
+   export PRIVATE_KEY="your_private_key_here"
+   ```  
+2. **Verify environment setup:**  
+   ```sh
+   echo $ZKSYNC_RPC  
+   echo $PRIVATE_KEY  
+   ```  
 
-## Usage
+## Compilation  
+Compile the smart contract to ensure there are no errors:  
+```sh
+forge build  
+```  
 
-### Build
+## Testing  
+Run the unit tests to verify contract functionality:  
+```sh
+forge test  
+```  
 
-```shell
-$ forge build
+## Deployment  
+Deploy the contract to zkSync Era Testnet:  
+```sh
+forge script script/Deploy.s.sol --rpc-url $ZKSYNC_RPC --broadcast --private-key $PRIVATE_KEY  
+```  
+
+##  Output  
+ 
 ```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Deployed contract at: 0x...
+Transaction hash: 0x....
+```  
